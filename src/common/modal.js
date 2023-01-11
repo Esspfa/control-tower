@@ -1,27 +1,34 @@
 import React, {Component} from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-} from 'react-native';
+import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
 
-const Custommodal = () => (
-  <View style={styles.popupview}>
-    <Text style={styles.popupheadtext}>Are You Sure !</Text>
-    <Text style={styles.popupsubtext}>
-      Are you sure you want to Accept this job ?
-    </Text>
-    <View style={styles.popupbutton}>
-      <TouchableOpacity style={styles.Nobutton}>
-        <Text style={styles.Nobuttontext}>No</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.Yesbutton}>
-        <Text style={styles.Yesbuttontext}>Yes</Text>
-      </TouchableOpacity>
+const Custommodal = ({setShowmodal}) => {
+  const navigation = useNavigation();
+
+  return (
+    <View style={styles.popupview}>
+      <Text style={styles.popupheadtext}>Are You Sure !</Text>
+      <Text style={styles.popupsubtext}>
+        Are you sure you want to Accept this job ?
+      </Text>
+      <View style={styles.popupbutton}>
+        <TouchableOpacity
+          onPress={() => setShowmodal(false)}
+          style={styles.Nobutton}>
+          <Text style={styles.Nobuttontext}>No</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('Accepted');
+            setShowmodal(false);
+          }}
+          style={styles.Yesbutton}>
+          <Text style={styles.Yesbuttontext}>Yes</Text>
+        </TouchableOpacity>
+      </View>
     </View>
-  </View>
-);
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -31,13 +38,13 @@ const styles = StyleSheet.create({
   popupview: {
     backgroundColor: 'white',
     width: 310,
-    
     justifyContent: 'center',
     height: 220,
     borderRadius: 30,
-    position:'absolute',
-    top:"23%",
-    left:50
+    position: 'absolute',
+    top: '23%',
+    left: 50,
+    zIndex: 2,
     // bottom:'50%'
   },
   popupheadtext: {

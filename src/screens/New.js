@@ -7,6 +7,7 @@ import {
   Image,
   ScrollView,
   TouchableOpacity,
+  Modal,
 } from 'react-native';
 
 import account from '/TowerApp/assets/image/account.png';
@@ -77,61 +78,81 @@ const carsData = [
   },
 ];
 
-export default function New() 
-{
-// function handleNavigation(screenName)
-// {
-//     navigation.navigate('POPUP');
-// }
-const [showmodal, setShowmodal] = useState(false);
+export default function New(props) {
+  // function handleNavigation(screenName)
+  // {
+  //     navigation.navigate('POPUP');
+  // }
+  const [showmodal, setShowmodal] = useState(false);
 
+  // constructor(props)(
+  //   this.state = { showmodal : true}
+  // )
 
-return (
+  return (
+    <ScrollView>
+      <View style={styles.container}>
+        <View>
+          {carsData.map((item, ind) => (
+            <View style={styles.inner} key={ind}>
+              <View style={styles.maindetails}>
+                <Image style={styles.img} source={item.image} />
+                <View style={styles.details}>
+                  <Text style={styles.heading}>{item.heading}</Text>
+                  <Text style={styles.subhead}>{item.subhead}</Text>
+                  <View style={{flexDirection: 'row'}}>
+                    <Image style={styles.locationmarker} source={item.icon} />
+                    <Text style={styles.location}>{item.location}</Text>
+                  </View>
+                </View>
+              </View>
 
-  <ScrollView>
-    <View style={styles.container}>
-      {/* <View style={styles.main}>
-        <Image style={styles.accounticon} source={account} />
-        <Text style={styles.title}>Control Tower</Text>
-        <Text style={styles.subhead}>Control Tower</Text>
-      
-      </View> */}
-<View>
-      {carsData.map((item, ind) => (
-        <View style={styles.inner} key={ind}>
-          <View style={styles.maindetails}>
-            <Image style={styles.img} source={item.image} />
-            <View style={styles.details}>
-              <Text style={styles.heading}>{item.heading}</Text>
-              <Text style={styles.subhead}>{item.subhead}</Text>
-              <View style={{flexDirection: 'row'}}>
-                <Image style={styles.locationmarker} source={item.icon} />
-                <Text style={styles.location}>{item.location}</Text>
+              <View style={styles.btndiv}>
+                <TouchableOpacity
+                  onPress={() => setShowmodal(true)}
+                  style={styles.AcceptBtn}>
+                  <Text style={styles.ButtonText}>Accept</Text>
+                </TouchableOpacity>
+                <Text style={styles.time}>{item.time}</Text>
               </View>
             </View>
-          </View>
-
-          <View style={styles.btndiv}>
-            <TouchableOpacity 
-            onPress={() => setShowmodal(true)}
-            style={styles.AcceptBtn}>
-              <Text style={styles.ButtonText}>Accept</Text>
-            </TouchableOpacity>
-            <Text style={styles.time}>{item.time}</Text>
-          </View>
+          ))}
         </View>
-      ))}
-</View>
-    </View>
-    {showmodal ? <Custommodal /> : null}
-  </ScrollView>
-)};
+        {showmodal ? (
+          <TouchableOpacity
+            activeOpacity={0.9}
+            style={styles.maincontainer}
+            onPress={() => setShowmodal(false)}
+          />
+        ) : null}
+      </View>
+      {/* {showmodal ?
+        <Modal animationType="slide" closeOnClick={true} transparent={true} s>
+          <TouchableOpacity
+            
+            style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+            <Custommodal setShowmodal={setShowmodal} />
+          </TouchableOpacity>
+        </Modal>: null} */}
+      {showmodal ? <Custommodal setShowmodal={setShowmodal} /> : null}
+      {/* </Modal> */}
+    </ScrollView>
+  );
+}
 
 const styles = StyleSheet.create({
+  maincontainer: {
+    // flex: 1,
+    height: '100%',
+    width: '100%',
+    position: 'absolute',
+    marginTop: 0,
+    opacity: 0.9,
+    backgroundColor: 'black',
+    zIndex: 1,
+  },
   container: {
-    flex: 1,
-    position:'relative',opacity:  0.5,
-    backgroundColor:'black'
+    position: 'relative',
   },
   inner: {
     paddingBottom: 10,
@@ -150,10 +171,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#095D82',
     display: 'flex',
     flexDirection: 'row',
-    justifyContent:'space-between',
-    alignItems:'center'
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
-    maindetails: {
+  maindetails: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
@@ -163,8 +184,8 @@ const styles = StyleSheet.create({
   accounticon: {
     resizeMode: 'contain',
     width: 31,
-    marginTop:-11,
-    marginLeft:16
+    marginTop: -11,
+    marginLeft: 16,
   },
 
   details: {
@@ -177,7 +198,7 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     textAlign: 'center',
     marginTop: 14,
-    marginLeft:22
+    marginLeft: 22,
   },
   heading: {
     color: 'black',
@@ -246,4 +267,3 @@ const styles = StyleSheet.create({
     // backgroundColor:'orange'
   },
 });
-

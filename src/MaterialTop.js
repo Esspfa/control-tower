@@ -13,19 +13,15 @@
     return (
         <Tab.Navigator 
         
-        screenOptions={{
-          tabBarLabelStyle: { fontSize: 2},
-          tabBarLabelStyle: { fontWeight:'800' },
-          tabBarItemStyle: { width: 100 },
-          tabBarStyle: { color: '#095D82',tintColor:'white' },
-        }}
 
+        tabBarOptions={{ labelStyle: { textTransform: "none"}}}
         >
+          
           
           <Tab.Screen  name="New" component={New} />
           <Tab.Screen   name="Accepted" component={Accepted} />
-          <Tab.Screen  tabBarStyle={{fontSize:12}}  name="Completed" component={Completed} />
-          <Tab.Screen  name="Cancel" component={Cancelled} />
+          <Tab.Screen  name="Completed" component={Completed} />
+          <Tab.Screen  name="Cancelled" component={Cancelled} />
           
         </Tab.Navigator>
     );

@@ -5,7 +5,7 @@ export class Cancelled extends Component {
   render() {
     return (
       <View>
-        <Text>Cancelled</Text>
+        <Text></Text>
       </View>
     )
   }

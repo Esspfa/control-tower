@@ -22,6 +22,7 @@ function App() {
   // const navigation = useNavigation();
 
   const [showSplashScreen, setshowSplashScreen] = useState(true);
+  const [showbutton, setshowbutton] = useState(true);
 
   useEffect(() => {
     setTimeout(() => {
@@ -49,22 +50,19 @@ function App() {
         />
         <Stack.Screen
           name="Control Tower"
-          options={({ navigation }) => ({
+          options={({navigation}) => ({
             headerLeft: () => (
               <TouchableOpacity
                 onPress={() => {
                   navigation.navigate('My Account');
-                }}
-                >
-                <Image
-                  style={{width: 32, height: 32, marginRight: 88}}
-                  source={account}
-                />
+                }}>
+                <Image style={{width: 32, height: 32}} source={account} />
               </TouchableOpacity>
             ),
             headerStyle: {
               backgroundColor: '#095D82',
             },
+          
 
             headerTintColor: '#fff',
             headerTitleStyle: {
@@ -72,9 +70,16 @@ function App() {
             },
 
             headerRight: () => (
-              <View style={{flexDirection: 'row'}}>
-                <TouchableOpacity>
-                  <Text>SIGN IN</Text>
+              <View style={styles.buttonView}>
+                <TouchableOpacity
+                  style={showbutton ? styles.active : styles.notactive}
+                  onPress={() => setshowbutton(true)}>
+                  <Text>On Duty</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={showbutton ? styles.notactive : styles.active}
+                  onPress={() => setshowbutton(false)}>
+                  <Text>Off Duty</Text>
                 </TouchableOpacity>
               </View>
             ),
@@ -84,23 +89,18 @@ function App() {
 
         <Stack.Screen name="POPUP" component={POPUP} />
         <Stack.Screen
-        
-        name="Job_Details"
-          
+          name="Job_Details"
           options={() => ({
-          
             headerStyle: {
               backgroundColor: '#095D82',
-              
             },
             headerTintColor: '#fff',
             headerTitleStyle: {
               fontWeight: 'bold',
-               
             },
 
             headerRight: () => (
-              <View >
+              <View>
                 <TouchableOpacity>
                   <Text>SIGN IN</Text>
                 </TouchableOpacity>
@@ -108,32 +108,34 @@ function App() {
             ),
           })}
           component={Job_Details}
-        
-          />
-        <Stack.Screen name="Accepted_Job_Details" component={Accepted_Job_Details}/>
+        />
+        <Stack.Screen
+          name="Accepted_Job_Details"
+          component={Accepted_Job_Details}
+        />
 
-
-         <Stack.Screen
+        <Stack.Screen
           name="My Account"
-          
           options={() => ({
-          
             headerStyle: {
               backgroundColor: '#095D82',
-              
             },
             headerTintColor: '#fff',
             headerTitleStyle: {
               fontWeight: 'bold',
-               
             },
-            
-           
 
             headerRight: () => (
-              <View >
-                <TouchableOpacity>
-                  <Text>SIGN IN</Text>
+              <View style={styles.buttonView}>
+                <TouchableOpacity
+                  style={showbutton ? styles.active : styles.notactive}
+                  onPress={() => setshowbutton(true)}>
+                  <Text>On duty</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={showbutton ? styles.notactive : styles.active}
+                  onPress={() => setshowbutton(false)}>
+                  <Text>Off duty</Text>
                 </TouchableOpacity>
               </View>
             ),
@@ -145,10 +147,30 @@ function App() {
   );
 }
 
-// const styles = StyleSheet.create({
-//   controltower:
-//   {
-//     backgroundColor:'blue'
-//   }
-// });
+const styles = StyleSheet.create({
+  buttonView: {
+    flexDirection: 'row',
+    marginTop: 5,
+    left: 7,
+    height: 23,
+    color: '#095D82',
+    justifyContent: 'center',
+  },
+
+  active: {
+    marginTop: -3,
+    // Left:20,
+    backgroundColor: '#2EB448',
+    height: 24,
+    fontWeight: 'bold',
+    borderRadius: 4,
+  },
+  notactive: {
+    backgroundColor: 'white',
+    height: 18,
+
+    borderRadius: 2,
+    // borderRadius:20,
+  },
+});
 export default App;
