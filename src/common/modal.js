@@ -42,10 +42,9 @@ const styles = StyleSheet.create({
     height: 220,
     borderRadius: 30,
     position: 'absolute',
-    top: '23%',
-    left: 50,
+    top: '25%',
+    left: '12%',
     zIndex: 2,
-    // bottom:'50%'
   },
   popupheadtext: {
     color: 'black',

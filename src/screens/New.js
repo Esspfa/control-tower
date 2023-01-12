@@ -4,6 +4,7 @@ import {
   StyleSheet,
   Text,
   View,
+  useWindowDimensions,
   Image,
   ScrollView,
   TouchableOpacity,
@@ -126,33 +127,30 @@ export default function New(props) {
           />
         ) : null}
       </View>
-      {/* {showmodal ?
-        <Modal animationType="slide" closeOnClick={true} transparent={true} s>
-          <TouchableOpacity
-            
-            style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-            <Custommodal setShowmodal={setShowmodal} />
-          </TouchableOpacity>
-        </Modal>: null} */}
+    
       {showmodal ? <Custommodal setShowmodal={setShowmodal} /> : null}
-      {/* </Modal> */}
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   maincontainer: {
-    // flex: 1,
     height: '100%',
     width: '100%',
     position: 'absolute',
     marginTop: 0,
     opacity: 0.9,
     backgroundColor: 'black',
+    // flex:1,
+    // height:'70%',
+   
     zIndex: 1,
   },
   container: {
     position: 'relative',
+    overflow:'hidden',
+    height:'100%'
+   
   },
   inner: {
     paddingBottom: 10,
@@ -164,6 +162,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderBottomColor: '#E0E9EE',
     borderBottomWidth: 2,
+
+   
   },
   main: {
     width: '100%',
@@ -178,13 +178,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-
     width: '100%',
   },
   accounticon: {
     resizeMode: 'contain',
     width: 31,
-    marginTop: -11,
     marginLeft: 16,
   },
 
@@ -220,12 +218,10 @@ const styles = StyleSheet.create({
   locationmarker: {
     resizeMode: 'contain',
     width: 12,
-    // marginLeft: 52,
     marginTop: 5,
     marginRight: 3,
   },
   btndiv: {
-    // width: '100%',
     justifyContent: 'center',
     width: '21%',
     alignItems: 'center',
@@ -235,8 +231,6 @@ const styles = StyleSheet.create({
     margin: 2,
     width: '100%',
     height: 35,
-    // marginTop: -173,
-    // marginLeft: 290,
     justifyContent: 'center',
     borderRadius: 7,
   },
@@ -252,18 +246,13 @@ const styles = StyleSheet.create({
     color: '#383B40',
     fontWeight: '700',
     fontSize: 10,
-    // marginLeft: 319,
     margin: 2,
     marginTop: 13,
-    // height: 18,
     borderRadius: 7,
   },
   img: {
     resizeMode: 'contain',
     width: 80,
-    height: 78,
-    // marginLeft: 7,
-    // marginTop: -150,
-    // backgroundColor:'orange'
+    height: 78
   },
 });

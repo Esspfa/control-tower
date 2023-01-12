@@ -6,6 +6,7 @@ import {
   View,
   Image,
   TouchableOpacity,
+  ScrollView,
 } from 'react-native';
 import Rectangle from '/TowerApp/assets/image/Rectangle.png';
 import eyeicon from '/TowerApp/assets/image/eyeicon.png';
@@ -21,6 +22,7 @@ export default function Welcome({navigation})
 
 
 return(
+  <ScrollView>
   <View style={styles.container}>
     <Image style={styles.img} source={Rectangle} />
     <Text style={styles.text}>Welcome Back!</Text>
@@ -48,7 +50,7 @@ return(
     <TouchableOpacity onPress={() => handleNavigation('Control Tower')} style={styles.Btn}>
       <Text style={styles.otxt}>Sign In</Text>
     </TouchableOpacity>
-    <View style={styles.ltxt}>
+    <View style={styles.bottomtext}>
       <Text style={{color: '#095D82', fontWeight: '600', fontSize: 17}}>
         Need help?
       </Text>
@@ -63,6 +65,7 @@ return(
       </Text>
     </View>
   </View>
+  </ScrollView>
 )};
 
 const styles = StyleSheet.create({
@@ -137,12 +140,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 19,
   },
-  ltxt: {
-    display: 'flex',
-    alignSelf: 'center',
+  bottomtext: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginTop: '19%',
+    marginTop: '12%',
     justifyContent: 'center',
   },
 });

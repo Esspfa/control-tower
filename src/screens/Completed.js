@@ -163,11 +163,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   righticon: {
-    backgroundColor: 'white',
     margin: 3,
     resizeMode: 'contain',
-    width: '50%',
-    height: 32,
+    width: '45%',
+    height: 29,
     justifyContent: 'center',
     borderRadius: 7,
   },

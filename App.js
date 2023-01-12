@@ -1,5 +1,3 @@
-// In App.js in a new project
-
 import React, {useState, useEffect} from 'react';
 import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
@@ -11,18 +9,14 @@ import POPUP from './src/screens/POPUP';
 import Accepted_Job_Details from './src/screens/Accepted_Job_Details';
 import Job_Details from './src/screens/Job_Details';
 import account from './assets/image/account.png';
-import {useNavigation} from '@react-navigation/native';
 import Account from './src/screens/Account';
-
-import {create} from 'react-test-renderer';
+import Togglebutton from './src/common/togglebutton';
 
 const Stack = createNativeStackNavigator();
 
 function App() {
-  // const navigation = useNavigation();
 
   const [showSplashScreen, setshowSplashScreen] = useState(true);
-  const [showbutton, setshowbutton] = useState(true);
 
   useEffect(() => {
     setTimeout(() => {
@@ -40,9 +34,6 @@ function App() {
             options={{headerShown: false}}
           />
         ) : null}
-
-        {/*  */}
-
         <Stack.Screen
           name="Welcome"
           options={{headerShown: false}}
@@ -62,27 +53,12 @@ function App() {
             headerStyle: {
               backgroundColor: '#095D82',
             },
-          
-
             headerTintColor: '#fff',
             headerTitleStyle: {
               fontWeight: 'bold',
             },
-
             headerRight: () => (
-              <View style={styles.buttonView}>
-                <TouchableOpacity
-                  style={showbutton ? styles.active : styles.notactive}
-                  onPress={() => setshowbutton(true)}>
-                  <Text>On Duty</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  style={showbutton ? styles.notactive : styles.active}
-                  onPress={() => setshowbutton(false)}>
-                  <Text>Off Duty</Text>
-                </TouchableOpacity>
-              </View>
-            ),
+              <Togglebutton/>),
           })}
           component={MaterialTop}
         />
@@ -98,14 +74,8 @@ function App() {
             headerTitleStyle: {
               fontWeight: 'bold',
             },
-
             headerRight: () => (
-              <View>
-                <TouchableOpacity>
-                  <Text>SIGN IN</Text>
-                </TouchableOpacity>
-              </View>
-            ),
+              <Togglebutton/>),
           })}
           component={Job_Details}
         />
@@ -124,21 +94,8 @@ function App() {
             headerTitleStyle: {
               fontWeight: 'bold',
             },
-
             headerRight: () => (
-              <View style={styles.buttonView}>
-                <TouchableOpacity
-                  style={showbutton ? styles.active : styles.notactive}
-                  onPress={() => setshowbutton(true)}>
-                  <Text>On duty</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                  style={showbutton ? styles.notactive : styles.active}
-                  onPress={() => setshowbutton(false)}>
-                  <Text>Off duty</Text>
-                </TouchableOpacity>
-              </View>
-            ),
+              <Togglebutton/>),
           })}
           component={Account}
         />
@@ -147,30 +104,4 @@ function App() {
   );
 }
 
-const styles = StyleSheet.create({
-  buttonView: {
-    flexDirection: 'row',
-    marginTop: 5,
-    left: 7,
-    height: 23,
-    color: '#095D82',
-    justifyContent: 'center',
-  },
-
-  active: {
-    marginTop: -3,
-    // Left:20,
-    backgroundColor: '#2EB448',
-    height: 24,
-    fontWeight: 'bold',
-    borderRadius: 4,
-  },
-  notactive: {
-    backgroundColor: 'white',
-    height: 18,
-
-    borderRadius: 2,
-    // borderRadius:20,
-  },
-});
 export default App;
