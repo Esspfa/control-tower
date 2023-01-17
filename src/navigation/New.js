@@ -4,21 +4,18 @@ import {
   StyleSheet,
   Text,
   View,
-  useWindowDimensions,
-  Image,
   ScrollView,
   TouchableOpacity,
-  Modal,
 } from 'react-native';
+import CarData from '../component/common/CarData';
 
-import account from '/TowerApp/assets/image/account.png';
 import car from '/TowerApp/assets/image/car.png';
 import marker from '/TowerApp/assets/image/marker.png';
 import bus from '/TowerApp/assets/image/bus.png';
 import mini from '/TowerApp/assets/image/mini.png';
 import minicar from '/TowerApp/assets/image/minicar.png';
 import truck from '/TowerApp/assets/image/truck.png';
-import Custommodal from '../common/modal';
+import Custommodal from '../component/common/modal';
 
 const carsData = [
   {
@@ -79,35 +76,15 @@ const carsData = [
   },
 ];
 
-export default function New(props) {
-  // function handleNavigation(screenName)
-  // {
-  //     navigation.navigate('POPUP');
-  // }
+export default function New() {
   const [showmodal, setShowmodal] = useState(false);
-
-  // constructor(props)(
-  //   this.state = { showmodal : true}
-  // )
 
   return (
     <ScrollView>
       <View style={styles.container}>
         <View>
           {carsData.map((item, ind) => (
-            <View style={styles.inner} key={ind}>
-              <View style={styles.maindetails}>
-                <Image style={styles.img} source={item.image} />
-                <View style={styles.details}>
-                  <Text style={styles.heading}>{item.heading}</Text>
-                  <Text style={styles.subhead}>{item.subhead}</Text>
-                  <View style={{flexDirection: 'row'}}>
-                    <Image style={styles.locationmarker} source={item.icon} />
-                    <Text style={styles.location}>{item.location}</Text>
-                  </View>
-                </View>
-              </View>
-
+            <CarData item={item}>
               <View style={styles.btndiv}>
                 <TouchableOpacity
                   onPress={() => setShowmodal(true)}
@@ -116,18 +93,18 @@ export default function New(props) {
                 </TouchableOpacity>
                 <Text style={styles.time}>{item.time}</Text>
               </View>
-            </View>
+            </CarData>
           ))}
         </View>
-        {showmodal ? (
-          <TouchableOpacity
-            activeOpacity={0.9}
-            style={styles.maincontainer}
-            onPress={() => setShowmodal(false)}
-          />
-        ) : null}
       </View>
-    
+      {showmodal ? (
+        <TouchableOpacity
+          activeOpacity={0.9}
+          style={styles.maincontainer}
+          onPress={() => setShowmodal(false)}
+        />
+      ) : null}
+
       {showmodal ? <Custommodal setShowmodal={setShowmodal} /> : null}
     </ScrollView>
   );
@@ -141,86 +118,14 @@ const styles = StyleSheet.create({
     marginTop: 0,
     opacity: 0.9,
     backgroundColor: 'black',
-    // flex:1,
-    // height:'70%',
-   
     zIndex: 1,
   },
   container: {
     position: 'relative',
-    overflow:'hidden',
-    height:'100%'
-   
-  },
-  inner: {
-    paddingBottom: 10,
-    marginTop: 22,
-    paddingHorizontal: 42,
-    alignSelf: 'center',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    borderBottomColor: '#E0E9EE',
-    borderBottomWidth: 2,
-
-   
-  },
-  main: {
-    width: '100%',
-    height: 50,
-    backgroundColor: '#095D82',
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  maindetails: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '100%',
-  },
-  accounticon: {
-    resizeMode: 'contain',
-    width: 31,
-    marginLeft: 16,
+    overflow: 'hidden',
+    height: '100%',
   },
 
-  details: {
-    width: '60%',
-    marginLeft: 10,
-  },
-  title: {
-    color: '#fff',
-    fontSize: 20,
-    fontWeight: '700',
-    textAlign: 'center',
-    marginTop: 14,
-    marginLeft: 22,
-  },
-  heading: {
-    color: 'black',
-    fontSize: 15,
-    fontWeight: '900',
-  },
-  subhead: {
-    color: '#383B40',
-    fontSize: 12,
-    fontWeight: '700',
-    marginTop: 7,
-  },
-  location: {
-    color: '#383B40',
-    fontSize: 11,
-    fontWeight: '500',
-    marginTop: 10,
-  },
-  locationmarker: {
-    resizeMode: 'contain',
-    width: 12,
-    marginTop: 5,
-    marginRight: 3,
-  },
   btndiv: {
     justifyContent: 'center',
     width: '21%',
@@ -253,6 +158,6 @@ const styles = StyleSheet.create({
   img: {
     resizeMode: 'contain',
     width: 80,
-    height: 78
+    height: 78,
   },
 });

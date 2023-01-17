@@ -2,20 +2,18 @@ import React, {useState, useEffect} from 'react';
 import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import MaterialTop from './src/MaterialTop';
-import Splash from './src/screens/Splash';
-import Welcome from './src/screens/Welcome';
-import POPUP from './src/screens/POPUP';
-import Accepted_Job_Details from './src/screens/Accepted_Job_Details';
-import Job_Details from './src/screens/Job_Details';
+import MaterialTop from './src/TopBar/MaterialTop';
+import Splash from './src/Startup/Splash';
+import Welcome from './src/Startup/Welcome';
+import Accepted_Job_Details from './src/Job_details/AcceptedJobDetails';
+import Job_Details from './src/Job_details/JobDetails';
 import account from './assets/image/account.png';
-import Account from './src/screens/Account';
-import Togglebutton from './src/common/togglebutton';
+import Account from './src/Profie/Account';
+import Togglebutton from './src/component/common/togglebutton';
 
 const Stack = createNativeStackNavigator();
 
 function App() {
-
   const [showSplashScreen, setshowSplashScreen] = useState(true);
 
   useEffect(() => {
@@ -57,13 +55,11 @@ function App() {
             headerTitleStyle: {
               fontWeight: 'bold',
             },
-            headerRight: () => (
-              <Togglebutton/>),
+            headerRight: () => <Togglebutton />,
           })}
           component={MaterialTop}
         />
 
-        <Stack.Screen name="POPUP" component={POPUP} />
         <Stack.Screen
           name="Job_Details"
           options={() => ({
@@ -74,8 +70,7 @@ function App() {
             headerTitleStyle: {
               fontWeight: 'bold',
             },
-            headerRight: () => (
-              <Togglebutton/>),
+            headerRight: () => <Togglebutton />,
           })}
           component={Job_Details}
         />
@@ -94,8 +89,7 @@ function App() {
             headerTitleStyle: {
               fontWeight: 'bold',
             },
-            headerRight: () => (
-              <Togglebutton/>),
+            headerRight: () => <Togglebutton />,
           })}
           component={Account}
         />
